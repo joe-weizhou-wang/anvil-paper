@@ -8,7 +8,7 @@ data/
   - magma                                               # All Magma dataset and line numbers used in LLM code generation
   - PrimeVul_v0.1                                       # PrimeVul dataset used in LLM code generation
   - 2024CVE_c_cpp                                       # 2024CVE line numbers used in LLM code generation
-eval/                                                   # Evaluation script for RQs and Discussions
+eval/                                                   # Evaluation script for RQs, Discussions and zero-day case studies
 llm_code_gen/
   - different_cntx_size_experiment.py                   # Script to run different fixed context size experiments
   - max_cmp_stmt_experiment.py                          # Script to run Adaptive Context (AC) experiments
@@ -90,3 +90,17 @@ grep "roc_auc" checkpoint/lightning_logs/version_9/checkpoints/res.csv | tail -1
 We directly used the Magma benchmark from (https://hexhive.epfl.ch/magma/)
 
 To reproduce, please replace Magma's "targets" folder with "eval/discussion_fuzzing/targets_base" and "eval/discussion_fuzzing/targets_refined"
+
+## SFML Zero-Day Case Studies
+
+The bug reports and proof-of-concept inputs for the two SFML vulnerabilities discussed in the paper are available under `eval/sfml_zero_days/`.
+
+- `sfml_music_heap_use_after_free.md`: heap-use-after-free in `sf::Music` caused by unsynchronized audio thread teardown. This bug was reported to SFML and patched, as described in https://github.com/SFML/SFML/issues/3503.
+- `sfml_minimp3_heap_buffer_overflow.md`: heap-buffer-overflow in SFML's bundled `minimp3`, triggered through `sf::Music::openFromMemory()`. We reported this issue privately to the SFML maintainers through a GitHub Security Advisory thread (`GHSA-hq2x-cpx5-hmcm`; https://github.com/SFML/SFML/security/advisories/GHSA-hq2x-cpx5-hmcm, which may not be publicly accessible). Separately, we applied for and received the reserved CVE identifier `CVE-2025-50940`.
+
+The corresponding proof-of-concept archives are:
+
+- `poc_sfml_music_heap_use_after_free.zip`
+- `poc_sfml_minimp3_heap_buffer_overflow.zip`
+
+
