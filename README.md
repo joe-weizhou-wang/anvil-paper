@@ -4,6 +4,9 @@ Supervised-learning-based vulnerability detectors often fall short due to limite
 
 Link to paper: https://arxiv.org/abs/2408.16028
 
+<img width="929" height="267" alt="Screenshot 2026-07-01 at 22 03 36" src="https://github.com/user-attachments/assets/e538495f-cf2c-4a7d-88b5-71424ddf8af2" />
+
+
 ## Codebase Structure
 ```
 data/
