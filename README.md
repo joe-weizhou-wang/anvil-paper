@@ -1,5 +1,9 @@
 # ANVIL
 
+Supervised-learning-based vulnerability detectors often fall short due to limited labelled training data. In contrast, Large Language Models (LLMs) are trained on vast unlabelled code corpora, yet perform only marginally better than coin flips when directly prompted to detect vulnerabilities. In this paper, we reframe vulnerability detection as anomaly detection, based on the premise that vulnerable code is rare and thus anomalous relative to patterns learned by LLMs. We introduce ANVIL, which performs a masked code reconstruction task: The LLM reconstructs a masked line of code, and deviations from the original are scored as anomalies. We propose a hybrid anomaly score that combines exact match, cross-entropy loss, prediction confidence, and structural complexity. We evaluate our approach across multiple LLM families, scoring methods, and context sizes, and against vulnerabilities after the LLM's training cut-off. On the PrimeVul dataset, ANVIL outperforms state-of-the-art supervised detectors – LineVul, LineVD, and LLMAO – achieving up to 2× higher Top-3 accuracy, 75% better Normalized MFR, and a significant improvement on ROC-AUC. Finally, by integrating ANVIL with fuzzers, we uncover two previously unknown vulnerabilities, demonstrating the practical utility of anomaly-guided detection.
+
+Link to paper: https://arxiv.org/abs/2408.16028
+
 ## Codebase Structure
 ```
 data/
